@@ -12,6 +12,10 @@
         h1 {
             color: #0B3954;
         }
+
+        .green {
+            color: #00FF00;
+        }
     </style>
 </head>
 <body>
@@ -21,9 +25,19 @@
     <ol>
         <li class="boring">Nauczyć się HTML</li>
         <li class="boring">Nauczyć się CSS</li>
+
         <li>Nauczyć się JS</li>
         <li id="super-important">Zaimplementować</li>
     </ol>
+    <button type="button" onclick="removeBoringStuff()">Usuń nudne rzeczy</button>
+
+    <div>
+        <input type="text" id="myTextField">
+        <input type="checkbox" id="myCheckbox">
+        <button type="button" onclick="readValues()">Odczytaj wartości</button>
+
+    </div>
+
 </div>
 <script>
     const header = document.getElementById('main-header');
@@ -32,8 +46,37 @@
     const nudy = document.querySelectorAll("#app .boring");
     nudy.forEach(element => {
         alert(`Nuda: ${element.innerText}`);
-        element.classList.remove('boring');
+        //element.classList.remove('boring');
     });
+
+
+    let div = document.createElement('div');
+    div.classList.add('green');
+    div.innerText = 'Zielony tekst (jeśli dodasz CSS)';
+    document.getElementById('app').append(div); // jest też prepend
+
+    let listItem = document.createElement('li');
+    listItem.innerText = 'Zagrać';
+    // dodaję na koniec listy
+    document.querySelector("#app ol li:last-child").after(listItem); // jest też before
+
+    // usuwaja <li class="boring">Nauczyć się HTML</li>
+    // i <li className="boring">Nauczyć się CSS</li>
+    //document.querySelectorAll("#app .boring").forEach((e) => e.remove());
+
+    function removeBoringStuff() {
+        document.querySelectorAll("#app .boring").forEach((e) => e.remove());
+    }
+
+    function readValues() {
+        if (document.getElementById('myCheckbox').checked) {
+            alert(document.getElementById('myTextField').value )
+
+        }
+    }
+
+
+
 </script>
 </body>
 </html>
